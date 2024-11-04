@@ -116,10 +116,17 @@ def initialize_chat_config(message):
 
 @bot.message_handler(commands=['config'])
 def info_chat_config(message):
+    with Session(engine) as session:
+        chat_config = session.query(ChatConfiguration).filter_by(chat_id=message.chat.id).first()
     msg = bot.send_message(message.chat.id, f"""To update configuration send message in this format:
     value1_name:value1
     value2_name:value2
-Values available for configuration: ssh_host, ssh_port, ssh_user, ssh_password""")
+Values available for configuration: ssh_host, ssh_port, ssh_user, ssh_password
+Current configuration: 
+ssh_host: {chat_config.ssh_host},
+ssh_port: {chat_config.ssh_port}, 
+ssh_user: {chat_config.ssh_user}, 
+ssh_password: {chat_config.ssh_password}""")
     bot.register_for_reply_by_message_id(msg.id, change_chat_config)
 
 
