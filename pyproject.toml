@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "telegrambots"
+version = "0.1.0"
+description = ""
+authors = ["Dmitry <dab.work.en@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytelegrambotapi = "^4.23.0"
+environs = "^11.0.0"
+paramiko = "^3.5.0"
+sqlalchemy = "^2.0.36"
+alembic = "^1.13.3"
+psycopg2-binary = "^2.9.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
